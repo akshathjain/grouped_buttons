@@ -10,12 +10,22 @@ class CheckboxGroup extends StatefulWidget {
   final List<String> labels;
   final void Function(bool isChecked, String label, int index) onChange;
   final void Function(List<String> selected) onSelected;
+  final TextStyle labelStyle;
+
+  //these are fields for the checkbox
+  final Color activeColor;
+  final Color checkColor;
+  final bool tristate;
 
   CheckboxGroup({
     Key key,
     @required this.labels,
     this.onChange,
     this.onSelected,
+    this.labelStyle = const TextStyle(),
+    this.activeColor, //defaults to toggleableActiveColor,
+    this.checkColor = const Color(0xFFFFFFFF),
+    this.tristate = false,
   }) : super(key: key);
 
 
@@ -36,11 +46,14 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
         Checkbox(
           value: _selected.contains(widget.labels.elementAt(i)),
           onChanged: (bool isChecked) => onChanged(isChecked, i),
+          checkColor: widget.checkColor,
+          activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
+          tristate: widget.tristate,
         ),
 
         SizedBox(width: 24.0),
 
-        Text(widget.labels.elementAt(i))
+        Text(widget.labels.elementAt(i), style: widget.labelStyle,),
       ]));
     }
 
