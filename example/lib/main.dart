@@ -13,6 +13,7 @@ class GroupedButtonExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Grouped Buttons Example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -41,24 +42,41 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _body(){
-    return CheckboxGroup(
-      labels: <String>[
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ],
-      onChange: (bool isChecked, String label, int i){
-        print(isChecked);
-        print(label);
-        print(i);
-      },
-      onSelected: (List<String> checked){
-        print(checked.toString());
-      },
+    return Column(
+      children: <Widget>[
+
+        //CheckBoxGroup
+        CheckboxGroup(
+          labels: <String>[
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ],
+          onChange: (bool isChecked, String label, int i){
+            print("isChecked: $isChecked   label: $label  i: $i");
+          },
+          onSelected: (List<String> checked){
+            print("checked: ${checked.toString()}");
+          },
+        ),
+
+
+        //RadioButtonGroup
+        RadioButtonGroup(
+          labels: [
+            "Option 1",
+            "Option 2",
+          ],
+          onChange: (int i, String l){},
+          onSelected: (String label){},
+        ),
+
+
+      ]
     );
   }
 

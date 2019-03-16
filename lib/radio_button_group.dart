@@ -13,7 +13,7 @@ class RadioButtonGroup extends StatefulWidget {
 
   RadioButtonGroup({
     Key key,
-    this.labels,
+    @required this.labels,
     this.onChange,
     this.onSelected,
   }) : super (key: key);
