@@ -12,7 +12,7 @@ class GroupedButtonExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Grouped Buttons Example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
