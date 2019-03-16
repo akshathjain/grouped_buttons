@@ -42,8 +42,9 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
             //one at a time
             onChanged: (int index) => setState((){ 
               _selected = widget.labels.elementAt(i);
-              widget.onChange(i, widget.labels.elementAt(i));
-              widget.onSelected(widget.labels.elementAt(i));
+              
+              if(widget.onChange != null) widget.onChange(i, widget.labels.elementAt(i));
+              if(widget.onChange != null) widget.onSelected(widget.labels.elementAt(i));
             }),
           ),
 

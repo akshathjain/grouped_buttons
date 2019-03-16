@@ -62,8 +62,8 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
           _selected.add(widget.labels.elementAt(i));
         }
 
-        widget.onChange(isChecked, widget.labels.elementAt(i), i);
-        widget.onSelected(_selected);
+        if(widget.onChange != null) widget.onChange(isChecked, widget.labels.elementAt(i), i);
+        if(widget.onSelected != null) widget.onSelected(_selected);
       });
     }
   }
