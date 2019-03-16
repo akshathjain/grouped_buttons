@@ -5,6 +5,7 @@ Purpose: example app for the grouped buttons package
 */
 
 import 'package:flutter/material.dart';
+import 'package:grouped_buttons/grouped_buttons.dart';
 
 void main() => runApp(GroupedButtonExample());
 
