@@ -8,12 +8,14 @@ part of 'grouped_buttons.dart';
 
 class CheckboxGroup extends StatefulWidget {
   final List<String> labels;
-  final Widget Function(bool isChecked, String label, int index) onChange;
+  final void Function(bool isChecked, String label, int index) onChange;
+  final void Function(List<String> selected) onSelected;
 
   CheckboxGroup({
     Key key,
-    this.labels,
+    @required this.labels,
     this.onChange,
+    this.onSelected,
   }) : super(key: key);
 
 
@@ -61,6 +63,7 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
         }
 
         widget.onChange(isChecked, widget.labels.elementAt(i), i);
+        widget.onSelected(_selected);
       });
     }
   }

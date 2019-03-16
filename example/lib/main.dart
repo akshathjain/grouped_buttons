@@ -31,7 +31,35 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context){
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Grouped Buttons Example"),
+      ),
+      body: _body(),
+    );
+    // 
+  }
+
+  Widget _body(){
+    return CheckboxGroup(
+      labels: <String>[
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
+      onChange: (bool isChecked, String label, int i){
+        print(isChecked);
+        print(label);
+        print(i);
+      },
+      onSelected: (List<String> checked){
+        print(checked.toString());
+      },
+    );
   }
 
 }
