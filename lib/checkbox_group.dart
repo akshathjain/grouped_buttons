@@ -63,7 +63,7 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
                       tristate: widget.tristate,
                     );
       
-      Text t = Text(widget.labels.elementAt(i), style: widget.labelStyle,);
+      Text t = Text(widget.labels.elementAt(i), style: widget.labelStyle);
 
 
 
