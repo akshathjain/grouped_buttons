@@ -10,3 +10,8 @@ import 'package:flutter/material.dart';
 
 part 'checkbox_group.dart';
 part 'radio_button_group.dart';
+
+enum GroupedButtonsOrientation{
+  HORIZONTAL,
+  VERTICAL,
+}
