@@ -59,7 +59,7 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
                     _selected = widget.labels.elementAt(i);
                     
                     if(widget.onChange != null) widget.onChange(i, widget.labels.elementAt(i));
-                    if(widget.onChange != null) widget.onSelected(widget.labels.elementAt(i));
+                    if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
                   }),
                 );
 
