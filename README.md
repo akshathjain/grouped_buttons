@@ -54,7 +54,7 @@ There are several options that allow for more control.
 |`margin`       |Empty space surrounding the CheckboxGroup.   |
 |`onChange`     |Called when the value of the CheckboxGroup changes   |
 |`onSelected`   |Called when the user makes a selection   |
-|`orientation`  |Specifies the orientation to display elements. Either `GroupedButtonsOrientation.HORIZONTAL` or `GroupedButtonsOrientation.VERTICAL`  |
+|`orientation`  |Specifies the orientation to display elements. Either `GroupedButtonsOrientation.HORIZONTAL` or `GroupedButtonsOrientation.VERTICAL`.  |
 |`padding`      |Empty space in which to inset the CheckboxGroup.   |
 |`tristate`     |If true the checkbox's value can be true, false, or null.   |
 
@@ -88,7 +88,7 @@ There are several options that allow for more control.
 |`margin`       |Empty space surrounding the RadioButtonGroup.   |
 |`onChange`     |Called when the value of the RadioButtonGroup changes   |
 |`onSelected`   |Called when the user makes a selection   |
-|`orientation`  |Specifies the orientation to display elements. Either `GroupedButtonsOrientation.HORIZONTAL` or `GroupedButtonsOrientation.VERTICAL`  |
+|`orientation`  |Specifies the orientation to display elements. Either `GroupedButtonsOrientation.HORIZONTAL` or `GroupedButtonsOrientation.VERTICAL`.  |
 |`padding`      |Empty space in which to inset the RadioButtonGroup.   |
 
     RadioButtonGroup(
