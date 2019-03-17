@@ -66,7 +66,10 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
   void initState(){
     super.initState();
 
+    //set the selected to the picked 
     _selected = widget.picked;
+
+    //call the 
     if(widget.onSelected != null) widget.onSelected(_selected);
   }
 

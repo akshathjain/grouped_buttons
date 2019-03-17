@@ -12,7 +12,10 @@ class CheckboxGroup extends StatefulWidget {
   /// A list of strings that describes each Checkbox. Each label must be distinct.
   final List<String> labels;
 
-  /// Specifies which boxes to automatically check. Much match a label.
+  /// Specifies which boxes to be automatically check. 
+  /// Every element must match a label.
+  /// This is useful for clearing all selections (set it to []). 
+  /// If this is non-null, then the user must handle updating this list; otherwise, the state of the CheckboxGroup won't change.
   final List<String> checked;
 
   /// Called when the value of the CheckboxGroup changes.
@@ -80,13 +83,20 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
   void initState(){
     super.initState();
 
-    //set the selected to the checked
-    _selected = widget.checked ?? [];
+    //set the selected to the checked (if not null)
+    _selected = widget.checked ?? [];  
+    
+    //call the onselected callback to notify which ones have been checked
+    if(widget.onSelected != null) widget.onSelected(_selected);
   }
 
   @override
   Widget build(BuildContext context) {
-    
+
+    //set the selected to the checked (if not null)
+    _selected = widget.checked ?? _selected;    
+
+
     List<Widget> content = [];
 
     for(int i = 0; i < widget.labels.length; i++){
