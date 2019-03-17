@@ -59,15 +59,19 @@ There are several options that allow for more control.
 |`padding`      |Empty space in which to inset the CheckboxGroup.   |
 |`tristate`     |If true the checkbox's value can be true, false, or null.   |
 
+    List<String> _checked = ["A", "B"];
+
     CheckboxGroup(
       orientation: GroupedButtonsOrientation.HORIZONTAL,
       margin: const EdgeInsets.only(left: 12.0),
-      onChange: (bool isChecked, String label, int index) => print("isChecked: $isChecked   label: $label  index: $index"),
-      onSelected: (List selected) => print(selected.toString()),
+      onSelected: (List selected) => setState((){
+        _checked = selected;
+      }),
       labels: <String>[
         "A",
         "B",
       ],
+      checked: _checked,
       itemBuilder: (Checkbox cb, Text txt, int i){
         return Column(
           children: <Widget>[
@@ -93,15 +97,19 @@ There are several options that allow for more control.
 |`padding`      |Empty space in which to inset the RadioButtonGroup.   |
 |`picked`       |Specifies which Radio button to automatically pick. Every element must match a label. This is useful for clearing what is picked (set it to ""). If this is non-null, then the user must handle updating this; otherwise, the state of the RadioButtonGroup won't change. |
 
+    String _picked = "Two";
+
     RadioButtonGroup(
       orientation: GroupedButtonsOrientation.HORIZONTAL,
       margin: const EdgeInsets.only(left: 12.0),
-      onChange: (String label, int index) => print("label: $label index: $index"),
-      onSelected: (String selected) => print(selected),
+      onSelected: (String selected) => setState((){
+        _picked = selected;
+      }),
       labels: <String>[
         "One",
         "Two",
       ],
+      picked: _picked,
       itemBuilder: (Radio rb, Text txt, int i){
         return Column(
           children: <Widget>[

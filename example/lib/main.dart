@@ -30,8 +30,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {  
 
-  List<String> _customCheckboxGroupChecked = ["A", "B"];
-  String _customRadioButtonGroupPicked = "Two";
+  List<String> _checked = ["A", "B"];
+  String _picked = "Two";
 
   @override
   Widget build(BuildContext context){
@@ -121,13 +121,13 @@ class _HomePageState extends State<HomePage> {
           orientation: GroupedButtonsOrientation.HORIZONTAL,
           margin: const EdgeInsets.only(left: 12.0),
           onSelected: (List selected) => setState((){
-            _customCheckboxGroupChecked = selected;
+            _checked = selected;
           }),
           labels: <String>[
             "A",
             "B",
           ],
-          checked: _customCheckboxGroupChecked,
+          checked: _checked,
           itemBuilder: (Checkbox cb, Text txt, int i){
             return Column(
               children: <Widget>[
@@ -156,13 +156,13 @@ class _HomePageState extends State<HomePage> {
           orientation: GroupedButtonsOrientation.HORIZONTAL,
           margin: const EdgeInsets.only(left: 12.0),
           onSelected: (String selected) => setState((){
-            _customRadioButtonGroupPicked = selected;
+            _picked = selected;
           }),
           labels: <String>[
             "One",
             "Two",
           ],
-          picked: _customRadioButtonGroupPicked,
+          picked: _picked,
           itemBuilder: (Radio rb, Text txt, int i){
             return Column(
               children: <Widget>[
