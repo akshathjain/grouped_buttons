@@ -1,3 +1,7 @@
-## [0.0.1] - TODO: Add release date.
+## [1.0.0] - March 17, 2019
 
-* TODO: Describe initial release.
+Initial Release. This is a set of Flutter widgets that makes grouping Checkboxes and Radio Buttons much easier!
+
+Features:
+- CheckedBoxGroup
+- RadioButtonGroup
