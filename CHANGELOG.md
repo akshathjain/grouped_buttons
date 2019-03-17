@@ -6,6 +6,13 @@ Features:
 - CheckedBoxGroup
 - RadioButtonGroup
 
+
 ## [1.0.1] - March 17, 2019
 
 Updated broken images in documentation and changed homepage to the GitHub repo.
+
+
+## [1.0.2] - TODO: Add Date
+
+- Updated Dart docs for `CheckboxGroup` and `RadioButtonGroup`. 
+- Fixed some typos in the README.MD
