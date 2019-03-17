@@ -86,8 +86,8 @@ There are several options that allow for more control.
 |`labels`       |(required) A list of strings that describes each Radio button.   |
 |`labelStyle`   |The style to use for the labels.   |
 |`margin`       |Empty space surrounding the RadioButtonGroup.   |
-|`onChange`     |Called when the value of the RadioButtonGroup changes   |
-|`onSelected`   |Called when the user makes a selection   |
+|`onChange`     |Called when the value of the RadioButtonGroup changes.   |
+|`onSelected`   |Called when the user makes a selection.   |
 |`orientation`  |Specifies the orientation to display elements. Either `GroupedButtonsOrientation.HORIZONTAL` or `GroupedButtonsOrientation.VERTICAL`.  |
 |`padding`      |Empty space in which to inset the RadioButtonGroup.   |
 

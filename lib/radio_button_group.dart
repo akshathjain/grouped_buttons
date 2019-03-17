@@ -9,18 +9,33 @@ Licensing: More information can be found here: https://github.com/akshathjain/gr
 part of 'grouped_buttons.dart';
 
 class RadioButtonGroup extends StatefulWidget {
+  /// A list of strings that describes each Radio button.
   final List<String> labels;
+
+  /// Called when the value of the RadioButtonGroup changes.
   final void Function(String label, int index) onChange;
+
+  /// Called when the user makes a selection.
   final void Function(String selected) onSelected;
+
+  /// The style to use for the labels.
   final TextStyle labelStyle;
+
+  /// Specifies the orientation to display elements.
   final GroupedButtonsOrientation orientation;
+
+  /// Called when needed to build a RadioButtonGroup element.
   final Widget Function(Radio radioButton, Text label, int index) itemBuilder;
 
-  //fields for the radiobutton
+  //RADIO BUTTON FIELDS
+  /// The color to use when a Radio button is checked.
   final Color activeColor;
 
-  //spacing stuff
+  //SPACING STUFF
+  /// Empty space in which to inset the RadioButtonGroup.
   final EdgeInsetsGeometry padding;
+
+  /// Empty space surrounding the RadioButtonGroup.
   final EdgeInsetsGeometry margin;
 
   RadioButtonGroup({
