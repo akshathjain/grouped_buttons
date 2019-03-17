@@ -146,7 +146,24 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
 
-
+        RadioButtonGroup(
+          orientation: GroupedButtonsOrientation.HORIZONTAL,
+          margin: const EdgeInsets.only(left: 12.0),
+          labels: <String>[
+            "One",
+            "Two",
+          ],
+          itemBuilder: (Radio rb, Text txt, int i){
+            return Column(
+              children: <Widget>[
+                Icon(Icons.public),
+                rb,
+                txt,
+              ],
+            );
+          },
+          onSelected: (String selected) => print(selected),
+        ),
   
       ]
     );
