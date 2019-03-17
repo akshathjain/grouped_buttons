@@ -94,8 +94,11 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
   Widget build(BuildContext context) {
 
     //set the selected to the checked (if not null)
-    _selected = widget.checked ?? _selected;    
-
+    if(widget.checked != null){
+      _selected = [];
+     _selected.addAll(widget.checked); //use add all to prevent a shallow copy
+    }
+    
 
     List<Widget> content = [];
 

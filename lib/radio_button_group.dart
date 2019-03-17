@@ -12,7 +12,10 @@ class RadioButtonGroup extends StatefulWidget {
   /// A list of strings that describes each Radio button. Each label must be distinct.
   final List<String> labels;
 
-  /// Specifies which Radio button to automatically pick. Must match a label.
+  /// Specifies which Radio button to automatically pick.
+  /// Every element must match a label.
+  /// This is useful for clearing what is picked (set it to "").
+  /// If this is non-null, then the user must handle updating this; otherwise, the state of the RadioButtonGroup won't change.
   final String picked;
 
   /// Called when the value of the RadioButtonGroup changes.
@@ -66,16 +69,20 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
   void initState(){
     super.initState();
 
-    //set the selected to the picked 
-    _selected = widget.picked;
+    //set the selected to the picked (if not null)
+    _selected = widget.picked ?? "";
 
-    //call the 
+    //call the onSelected callback to notify the user which element has been selected
     if(widget.onSelected != null) widget.onSelected(_selected);
   }
 
 
   @override
   Widget build(BuildContext context) {
+
+     //set the selected to the picked (if not null)
+    _selected = widget.picked ?? _selected;
+
 
     List<Widget> content = [];
     for(int i = 0; i < widget.labels.length; i++){
