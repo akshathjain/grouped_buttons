@@ -14,5 +14,9 @@ Updated broken images in documentation and changed homepage to the GitHub repo.
 
 ## [1.0.2] - TODO: Add Date
 
+- Added ability for user to:
+    - clear CheckboxGroup & RadioButtonGroup
+    - specifiy initial states for CheckboxGroup & RadioButtonGroup
+    - manually change the state for CheckboxGroup & RadioButtonGroup
 - Updated Dart docs for `CheckboxGroup` and `RadioButtonGroup`. 
-- Fixed some typos in the README.MD
+- Fixed some typos in the README
