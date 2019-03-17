@@ -86,8 +86,6 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
     //set the selected to the checked (if not null)
     _selected = widget.checked ?? [];  
     
-    //call the onselected callback to notify which ones have been checked
-    if(widget.onSelected != null) widget.onSelected(_selected);
   }
 
   @override
@@ -98,7 +96,7 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
       _selected = [];
      _selected.addAll(widget.checked); //use add all to prevent a shallow copy
     }
-    
+
 
     List<Widget> content = [];
 

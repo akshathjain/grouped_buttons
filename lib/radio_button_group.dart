@@ -72,8 +72,6 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
     //set the selected to the picked (if not null)
     _selected = widget.picked ?? "";
 
-    //call the onSelected callback to notify the user which element has been selected
-    if(widget.onSelected != null) widget.onSelected(_selected);
   }
 
 
