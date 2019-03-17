@@ -9,20 +9,43 @@ Licensing: More information can be found here: https://github.com/akshathjain/gr
 part of 'grouped_buttons.dart';
 
 class CheckboxGroup extends StatefulWidget {
+  /// A list of strings that describes each Checkbox.
   final List<String> labels;
+
+  /// Called when the value of the CheckboxGroup changes.
   final void Function(bool isChecked, String label, int index) onChange;
+  
+  /// Called when the user makes a selection.
   final void Function(List<String> selected) onSelected;
+
+  /// The style to use for the labels.
   final TextStyle labelStyle;
+
+  /// Specifies the orientation to display elements.
   final GroupedButtonsOrientation orientation;
+
+  /// Called when needed to build a CheckboxGroup element.
   final Widget Function(Checkbox checkBox, Text label, int index) itemBuilder;
 
-  //these are fields for the checkbox
+
+  //THESE FIELDS ARE FOR THE CHECKBOX
+
+  /// The color to use when a Checkbox is checked.
   final Color activeColor;
+
+  /// The color to use for the check icon when a Checkbox is checked.
   final Color checkColor;
+
+  /// If true the checkbox's value can be true, false, or null.
   final bool tristate;
 
-  //spacing stuff
+
+  //SPACING STUFF
+
+  /// Empty space in which to inset the CheckboxGroup.
   final EdgeInsetsGeometry padding;
+
+  /// Empty space surrounding the CheckboxGroup.
   final EdgeInsetsGeometry margin;
 
   CheckboxGroup({
