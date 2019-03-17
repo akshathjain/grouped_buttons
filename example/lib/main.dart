@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
         ///CUSTOM RADIOBUTTON GROUP
         Container(
           padding: const EdgeInsets.only(left: 14.0, top: 14.0, bottom: 14.0),
-          child: Text("Custom RadioButtonGroups", 
+          child: Text("Custom RadioButtonGroup", 
             style: TextStyle(
               fontWeight: FontWeight.bold, 
               fontSize: 20.0
