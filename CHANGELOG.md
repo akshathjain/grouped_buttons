@@ -12,7 +12,7 @@ Features:
 Updated broken images in documentation and changed homepage to the GitHub repo.
 
 
-## [1.0.2] - TODO: Add Date
+## [1.0.2] - March 17, 2019
 
 - Added ability for user to:
     - clear CheckboxGroup & RadioButtonGroup
