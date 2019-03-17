@@ -122,6 +122,7 @@ class _HomePageState extends State<HomePage> {
             "A",
             "B",
           ],
+          checked: ["A", "B"],
           itemBuilder: (Checkbox cb, Text txt, int i){
             return Column(
               children: <Widget>[
@@ -154,6 +155,7 @@ class _HomePageState extends State<HomePage> {
             "One",
             "Two",
           ],
+          picked: "Two",
           itemBuilder: (Radio rb, Text txt, int i){
             return Column(
               children: <Widget>[

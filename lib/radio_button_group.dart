@@ -9,8 +9,11 @@ Licensing: More information can be found here: https://github.com/akshathjain/gr
 part of 'grouped_buttons.dart';
 
 class RadioButtonGroup extends StatefulWidget {
-  /// A list of strings that describes each Radio button.
+  /// A list of strings that describes each Radio button. Each label must be distinct.
   final List<String> labels;
+
+  /// Specifies which Radio button to automatically pick. Must match a label.
+  final String picked;
 
   /// Called when the value of the RadioButtonGroup changes.
   final void Function(String label, int index) onChange;
@@ -41,6 +44,7 @@ class RadioButtonGroup extends StatefulWidget {
   RadioButtonGroup({
     Key key,
     @required this.labels,
+    this.picked,
     this.onChange,
     this.onSelected,
     this.labelStyle = const TextStyle(),
@@ -57,6 +61,15 @@ class RadioButtonGroup extends StatefulWidget {
 
 class _RadioButtonGroupState extends State<RadioButtonGroup> {
   String _selected;
+
+  @override
+  void initState(){
+    super.initState();
+
+    _selected = widget.picked;
+    if(widget.onSelected != null) widget.onSelected(_selected);
+  }
+
 
   @override
   Widget build(BuildContext context) {
