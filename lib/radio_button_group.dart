@@ -8,7 +8,7 @@ part of 'grouped_buttons.dart';
 
 class RadioButtonGroup extends StatefulWidget {
   final List<String> labels;
-  final void Function(int index, String label) onChange;
+  final void Function(String label, int index) onChange;
   final void Function(String selected) onSelected;
   final TextStyle labelStyle;
   final GroupedButtonsOrientation orientation;
@@ -58,7 +58,7 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
                   onChanged: (var index) => setState((){ 
                     _selected = widget.labels.elementAt(i);
                     
-                    if(widget.onChange != null) widget.onChange(i, widget.labels.elementAt(i));
+                    if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
                     if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
                   }),
                 );

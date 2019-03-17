@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
             "Friday",
             "Saturday",
           ],
-          onChange: (bool isChecked, String label, int i) => print("isChecked: $isChecked   label: $label  i: $i"),
+          onChange: (bool isChecked, String label, int index) => print("isChecked: $isChecked   label: $label  index: $index"),
           onSelected: (List<String> checked) => print("checked: ${checked.toString()}"),
         ),
 
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
             "Option 1",
             "Option 2",
           ],
-          onChange: (int i, String l) => print("$i $l"),
+          onChange: (String label, int index) => print("label: $label index: $index"),
           onSelected: (String label) => print(label),
         ),
 
