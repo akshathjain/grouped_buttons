@@ -48,8 +48,9 @@ There are several options that allow for more control.
 |---------------|--------------|
 |`activeColor`  |The color to use when a Checkbox is checked.  |
 |`checkColor`   |The color to use for the check icon when a Checkbox is checked.   |
+|`checked`      |Specifies which boxes to be automatically check. Every element must match a label. This is useful for clearing all selections (set it to []). If this is non-null, then the user must handle updating this list; otherwise, the state of the CheckboxGroup won't change. |
 |`itemBuilder`  |Called when needed to build a CheckboxGroup element.   |
-|`labels`       |(required) A list of strings that describes each Checkbox.   |
+|`labels`       |(required) A list of strings that describes each Checkbox. Each label must be distinct. |
 |`labelStyle`   |The style to use for the labels.   |
 |`margin`       |Empty space surrounding the CheckboxGroup.   |
 |`onChange`     |Called when the value of the CheckboxGroup changes.   |
@@ -83,13 +84,14 @@ There are several options that allow for more control.
 |---------------|--------------|
 |`activeColor`  |The color to use when a Radio button is checked.  |
 |`itemBuilder`  |Called when needed to build a RadioButtonGroup element.   |
-|`labels`       |(required) A list of strings that describes each Radio button.   |
+|`labels`       |(required) A list of strings that describes each Radio button. Each label must be distinct.   |
 |`labelStyle`   |The style to use for the labels.   |
 |`margin`       |Empty space surrounding the RadioButtonGroup.   |
 |`onChange`     |Called when the value of the RadioButtonGroup changes.   |
 |`onSelected`   |Called when the user makes a selection.   |
 |`orientation`  |Specifies the orientation to display elements. Either `GroupedButtonsOrientation.HORIZONTAL` or `GroupedButtonsOrientation.VERTICAL`.  |
 |`padding`      |Empty space in which to inset the RadioButtonGroup.   |
+|`picked`       |Specifies which Radio button to automatically pick. Every element must match a label. This is useful for clearing what is picked (set it to ""). If this is non-null, then the user must handle updating this; otherwise, the state of the RadioButtonGroup won't change. |
 
     RadioButtonGroup(
       orientation: GroupedButtonsOrientation.HORIZONTAL,
