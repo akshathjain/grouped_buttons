@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
         //SIMPLE USAGE EXAMPLE
         //--------------------
 
-        //Basic CheckboxGroup
+        //BASIC CHECKBOXGROUP
         Container(
           padding: const EdgeInsets.only(left: 14.0, top: 14.0),
           child: Text("Basic CheckboxGroup", 
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
 
 
 
-        //Basic RadioButtonGroup
+        //BASIC RADIOBUTTONGROUP
         Container(
           padding: const EdgeInsets.only(left: 14.0, top: 14.0),
           child: Text("Basic RadioButtonGroup", 
@@ -97,6 +97,57 @@ class _HomePageState extends State<HomePage> {
         ),
 
 
+
+
+        //--------------------
+        //CUSTOM USAGE EXAMPLE
+        //--------------------
+
+        ///CUSTOM CHECKBOX GROUP
+        Container(
+          padding: const EdgeInsets.only(left: 14.0, top: 14.0, bottom: 14.0),
+          child: Text("Custom CheckboxGroup", 
+            style: TextStyle(
+              fontWeight: FontWeight.bold, 
+              fontSize: 20.0
+            ),
+          ),
+        ),
+
+        CheckboxGroup(
+          orientation: GroupedButtonsOrientation.HORIZONTAL,
+          margin: const EdgeInsets.only(left: 12.0),
+          labels: <String>[
+            "A",
+            "B",
+          ],
+          itemBuilder: (Checkbox cb, Text txt, int i){
+            return Column(
+              children: <Widget>[
+                Icon(Icons.polymer),
+                cb,
+                txt,
+              ],
+            );
+          },
+          onSelected: (List selected) => print(selected.toString()),
+        ),
+        
+
+
+        ///CUSTOM RADIOBUTTON GROUP
+        Container(
+          padding: const EdgeInsets.only(left: 14.0, top: 14.0, bottom: 14.0),
+          child: Text("Custom RadioButtonGroups", 
+            style: TextStyle(
+              fontWeight: FontWeight.bold, 
+              fontSize: 20.0
+            ),
+          ),
+        ),
+
+
+  
       ]
     );
   }
