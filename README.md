@@ -8,7 +8,7 @@ A set of Flutter widgets that makes grouping Checkboxes and Radio Buttons much e
 Add the following to your `pubspec.yaml` file:
 
     dependencies:
-      grouped_buttons: ^1.0.0
+      grouped_buttons: ^1.0.1
       
 ## Simple Usage
 #### Creating a basic `CheckboxGroup`
