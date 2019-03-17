@@ -117,6 +117,7 @@ class _HomePageState extends State<HomePage> {
         CheckboxGroup(
           orientation: GroupedButtonsOrientation.HORIZONTAL,
           margin: const EdgeInsets.only(left: 12.0),
+          onSelected: (List selected) => print(selected.toString()),
           labels: <String>[
             "A",
             "B",
@@ -130,7 +131,6 @@ class _HomePageState extends State<HomePage> {
               ],
             );
           },
-          onSelected: (List selected) => print(selected.toString()),
         ),
         
 
@@ -149,6 +149,7 @@ class _HomePageState extends State<HomePage> {
         RadioButtonGroup(
           orientation: GroupedButtonsOrientation.HORIZONTAL,
           margin: const EdgeInsets.only(left: 12.0),
+          onSelected: (String selected) => print(selected),
           labels: <String>[
             "One",
             "Two",
@@ -162,7 +163,6 @@ class _HomePageState extends State<HomePage> {
               ],
             );
           },
-          onSelected: (String selected) => print(selected),
         ),
   
       ]
