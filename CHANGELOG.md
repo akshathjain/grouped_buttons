@@ -5,3 +5,7 @@ Initial Release. This is a set of Flutter widgets that makes grouping Checkboxes
 Features:
 - CheckedBoxGroup
 - RadioButtonGroup
+
+## [1.0.1] - March 17, 2019
+
+Updated broken images in documentation and changed homepage to the GitHub repo.
