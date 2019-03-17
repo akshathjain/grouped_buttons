@@ -43,6 +43,8 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
 
     for(int i = 0; i < widget.labels.length; i++){
       content.add(Row(children: <Widget>[
+        SizedBox(width: 12.0),
+        
         Checkbox(
           value: _selected.contains(widget.labels.elementAt(i)),
           onChanged: (bool isChecked) => onChanged(isChecked, i),
@@ -51,7 +53,7 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
           tristate: widget.tristate,
         ),
 
-        SizedBox(width: 24.0),
+        SizedBox(width: 12.0),
 
         Text(widget.labels.elementAt(i), style: widget.labelStyle,),
       ]));

@@ -42,10 +42,24 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _body(){
-    return Column(
+    return ListView(
       children: <Widget>[
 
-        //CheckBoxGroup
+        //--------------------
+        //SIMPLE USAGE EXAMPLE
+        //--------------------
+
+        //Basic CheckboxGroup
+        Container(
+          padding: const EdgeInsets.only(left: 14.0, top: 14.0),
+          child: Text("Basic CheckboxGroup", 
+            style: TextStyle(
+              fontWeight: FontWeight.bold, 
+              fontSize: 20.0
+            ),
+          ),
+        ),
+
         CheckboxGroup(
           labels: <String>[
             "Sunday",
@@ -61,7 +75,18 @@ class _HomePageState extends State<HomePage> {
         ),
 
 
-        //RadioButtonGroup
+
+        //Basic RadioButtonGroup
+        Container(
+          padding: const EdgeInsets.only(left: 14.0, top: 14.0),
+          child: Text("Basic RadioButtonGroup", 
+            style: TextStyle(
+              fontWeight: FontWeight.bold, 
+              fontSize: 20.0
+            ),
+          ),
+        ),
+        
         RadioButtonGroup(
           labels: [
             "Option 1",
