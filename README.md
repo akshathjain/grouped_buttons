@@ -38,3 +38,4 @@ Add the following to your `pubspec.yaml` file:
     );
 
 #### Screenshot
+<img width="200px" src="screenshots/basicusagescreenshot.png" alt="Basic Usage"/>
