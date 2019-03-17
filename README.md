@@ -38,7 +38,7 @@ Add the following to your `pubspec.yaml` file:
     );
 
 #### Screenshot
-<img width="250px" src="screenshots/basicusagescreenshot.png" alt="Basic Usage"/>
+<img width="250px" src="https://raw.githubusercontent.com/akshathjain/grouped_buttons/master/screenshots/basicusagescreenshot.png" alt="Basic Usage"/>
 
 ## Custom Usage
 There are several options that allow for more control.
@@ -112,4 +112,4 @@ There are several options that allow for more control.
     );
 
 #### Screenshot
-<img width="250px" src="screenshots/customusagescreenshot.png" alt="Basic Usage"/>
+<img width="250px" src="https://raw.githubusercontent.com/akshathjain/grouped_buttons/master/screenshots/customusagescreenshot.png" alt="Basic Usage"/>
