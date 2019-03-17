@@ -9,8 +9,11 @@ Licensing: More information can be found here: https://github.com/akshathjain/gr
 part of 'grouped_buttons.dart';
 
 class CheckboxGroup extends StatefulWidget {
-  /// A list of strings that describes each Checkbox.
+  /// A list of strings that describes each Checkbox. Each label must be distinct.
   final List<String> labels;
+
+  /// Specifies which boxes to automatically check. Much match a label.
+  final List<String> checked;
 
   /// Called when the value of the CheckboxGroup changes.
   final void Function(bool isChecked, String label, int index) onChange;
@@ -26,7 +29,6 @@ class CheckboxGroup extends StatefulWidget {
 
   /// Called when needed to build a CheckboxGroup element.
   final Widget Function(Checkbox checkBox, Text label, int index) itemBuilder;
-
 
   //THESE FIELDS ARE FOR THE CHECKBOX
 
@@ -51,6 +53,7 @@ class CheckboxGroup extends StatefulWidget {
   CheckboxGroup({
     Key key,
     @required this.labels,
+    this.checked,
     this.onChange,
     this.onSelected,
     this.labelStyle = const TextStyle(),
@@ -72,6 +75,14 @@ class CheckboxGroup extends StatefulWidget {
 
 class _CheckboxGroupState extends State<CheckboxGroup> {
   List<String> _selected = [];
+
+  @override
+  void initState(){
+    super.initState();
+
+    //set the selected to the checked
+    _selected = widget.checked ?? [];
+  }
 
   @override
   Widget build(BuildContext context) {
