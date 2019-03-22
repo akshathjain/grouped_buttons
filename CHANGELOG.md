@@ -23,4 +23,4 @@ Updated broken images in documentation and changed homepage to the GitHub repo.
 
 ## [1.0.3] - March 22, 2019
 
-- Updated the project structure (importing the package is now easier)
+- Updated the project file structure (importing the package is now easier)
