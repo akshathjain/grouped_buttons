@@ -20,3 +20,7 @@ Updated broken images in documentation and changed homepage to the GitHub repo.
     - Manually change the state for CheckboxGroup & RadioButtonGroup
 - Updated Dart docs for CheckboxGroup and RadioButtonGroup.
 - Fixed some typos in the README
+
+## [1.0.3] - March 22, 2019
+
+- Updated the project structure (importing the package is now easier)

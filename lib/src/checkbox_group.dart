@@ -6,7 +6,8 @@ Copyright: © 2019, Akshath Jain. All rights reserved.
 Licensing: More information can be found here: https://github.com/akshathjain/grouped_buttons/blob/master/LICENSE
 */
 
-part of 'grouped_buttons.dart';
+import 'package:flutter/material.dart';
+import 'grouped_buttons_orientation.dart';
 
 class CheckboxGroup extends StatefulWidget {
   /// A list of strings that describes each Checkbox. Each label must be distinct.
