@@ -111,14 +111,19 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
 
       Checkbox cb = Checkbox(
                       value: _selected.contains(widget.labels.elementAt(i)),
-                      onChanged: widget.disabled.contains(widget.labels.elementAt(i)) ? null :
+                      onChanged: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ? null :
                                     (bool isChecked) => onChanged(isChecked, i),
                       checkColor: widget.checkColor,
                       activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
                       tristate: widget.tristate,
                     );
 
-      Text t = Text(widget.labels.elementAt(i), style: widget.labelStyle);
+      Text t = Text(
+        widget.labels.elementAt(i),
+        style: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ?
+                  widget.labelStyle.apply(color: Theme.of(context).disabledColor) :
+                  widget.labelStyle
+      );
 
 
 
