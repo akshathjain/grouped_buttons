@@ -48,7 +48,7 @@ There are several options that allow for more control.
 |---------------|--------------|
 |`activeColor`  |The color to use when a Checkbox is checked.  |
 |`checkColor`   |The color to use for the check icon when a Checkbox is checked.   |
-|`checked`      |Specifies which boxes to be automatically check. Every element must match a label. This is useful for clearing all selections (set it to []). If this is non-null, then the user must handle updating this list; otherwise, the state of the CheckboxGroup won't change. |
+|`checked`      |Specifies which boxes to be automatically checked. Every element must match a label. This is useful for clearing all selections (set it to []). If this is non-null, then the user must handle updating this list; otherwise, the state of the CheckboxGroup won't change. |
 | `disabled`    |Specifies which boxes should be disabled. If this is non-null, no boxes will be disabled. The strings passed to this must match the labels. |
 |`itemBuilder`  |Called when needed to build a CheckboxGroup element.   |
 |`labels`       |(required) A list of strings that describes each Checkbox. Each label must be distinct. |
@@ -88,7 +88,7 @@ There are several options that allow for more control.
 |   Properties  |  Description |
 |---------------|--------------|
 |`activeColor`  |The color to use when a Radio button is checked.  |
-| `disabled`    |Specifies which buttons should be disabled. If this is non-null, no buttons will be disabled. The strings passed to this must match the labels. |
+|`disabled`     |Specifies which buttons should be disabled. If this is non-null, no buttons will be disabled. The strings passed to this must match the labels. |
 |`itemBuilder`  |Called when needed to build a RadioButtonGroup element.   |
 |`labels`       |(required) A list of strings that describes each Radio button. Each label must be distinct.   |
 |`labelStyle`   |The style to use for the labels.   |
