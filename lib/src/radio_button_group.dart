@@ -19,6 +19,11 @@ class RadioButtonGroup extends StatefulWidget {
   /// If this is non-null, then the user must handle updating this; otherwise, the state of the RadioButtonGroup won't change.
   final String picked;
 
+  /// Specifies which buttons should be disabled.
+  /// If this is non-null, no buttons will be disabled.
+  /// The strings passed to this must match the labels.
+  final List<String> disabled;
+
   /// Called when the value of the RadioButtonGroup changes.
   final void Function(String label, int index) onChange;
 
@@ -49,6 +54,7 @@ class RadioButtonGroup extends StatefulWidget {
     Key key,
     @required this.labels,
     this.picked,
+    this.disabled,
     this.onChange,
     this.onSelected,
     this.labelStyle = const TextStyle(),
@@ -92,26 +98,32 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
                   value: i,
 
                   //just changed the selected filter to current selection
-                  //since these are radio buttons, and you can only pick 
+                  //since these are radio buttons, and you can only pick
                   //one at a time
-                  onChanged: (var index) => setState((){ 
-                    _selected = widget.labels.elementAt(i);
-                    
-                    if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
-                    if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
-                  }),
+                  onChanged: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ? null :
+                    (var index) => setState((){
+                      _selected = widget.labels.elementAt(i);
+
+                      if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
+                      if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
+                    }),
                 );
 
-      Text t = Text(widget.labels.elementAt(i), style: widget.labelStyle);
+      Text t = Text(
+        widget.labels.elementAt(i),
+        style: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ?
+                  widget.labelStyle.apply(color: Theme.of(context).disabledColor) :
+                  widget.labelStyle
+      );
 
       //use user defined method to build
       if(widget.itemBuilder != null)
         content.add(widget.itemBuilder(rb, t, i));
       else{ //otherwise, use predefined method of building
-        
+
         //vertical orientation means Column with Row inside
         if(widget.orientation == GroupedButtonsOrientation.VERTICAL){
-         
+
           content.add(Row(children: <Widget>[
             SizedBox(width: 12.0),
             rb,
@@ -120,16 +132,16 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
           ]));
 
         }else{ //horizontal orientation means Row with Column inside
-          
+
           content.add(Column(children: <Widget>[
             rb,
             SizedBox(width: 12.0),
             t,
           ]));
-          
+
         }
       }
-      
+
     }
 
     return Container(
