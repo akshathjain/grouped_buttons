@@ -28,6 +28,8 @@
 /build/
 *.lock
 
+/playground/
+
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
