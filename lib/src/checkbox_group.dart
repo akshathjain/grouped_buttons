@@ -140,9 +140,9 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
             // crossAxisAlignment: CrossAxisAlignment.start,
             // mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-            // SizedBox(width: 4.0),
+            SizedBox(width: 4.0),
             cb,
-            // SizedBox(width: 4.0),
+            SizedBox(width: 4.0),
             t,
           ]));
 
