@@ -124,9 +124,10 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
         //vertical orientation means Column with Row inside
         if(widget.orientation == GroupedButtonsOrientation.VERTICAL){
 
-          content.add(Row(mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
+          content.add(Row(
+          //   mainAxisAlignment: MainAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisSize: MainAxisSize.min,
             children: <Widget>[
             // SizedBox(width: 12.0),
             rb,
@@ -148,8 +149,8 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
     }
 
     return Container(
-      padding: widget.padding,
-      margin: widget.margin,
+      // padding: widget.padding,
+      // margin: widget.margin,
       child: widget.orientation == GroupedButtonsOrientation.VERTICAL ? Column(children: content) : Row(children: content),
     );
   }

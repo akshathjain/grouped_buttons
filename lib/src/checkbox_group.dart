@@ -136,9 +136,9 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
         if(widget.orientation == GroupedButtonsOrientation.VERTICAL){
 
           content.add(Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+            // mainAxisAlignment: MainAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            // mainAxisSize: MainAxisSize.min,
             children: <Widget>[
             // SizedBox(width: 4.0),
             cb,
@@ -160,8 +160,8 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
     }
 
     return Container(
-      padding: widget.padding,
-      margin: widget.margin,
+      // padding: widget.padding,
+      // margin: widget.margin,
       child: widget.orientation == GroupedButtonsOrientation.VERTICAL ? Column(children: content) : Row(children: content),
     );
   }
