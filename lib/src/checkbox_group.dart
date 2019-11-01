@@ -135,10 +135,14 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
         //vertical orientation means Column with Row inside
         if(widget.orientation == GroupedButtonsOrientation.VERTICAL){
 
-          content.add(Row(children: <Widget>[
-            SizedBox(width: 12.0),
+          content.add(Row(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            // mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+            SizedBox(width: 4.0),
             cb,
-            SizedBox(width: 12.0),
+            SizedBox(width: 4.0),
             t,
           ]));
 
@@ -146,7 +150,7 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
 
           content.add(Column(children: <Widget>[
             cb,
-            SizedBox(width: 12.0),
+            // SizedBox(width: 12.0),
             t,
           ]));
 
