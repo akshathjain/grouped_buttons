@@ -146,7 +146,7 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
 
           content.add(Column(children: <Widget>[
             cb,
-            SizedBox(width: 12.0),
+            // SizedBox(width: 12.0),
             t,
           ]));
 

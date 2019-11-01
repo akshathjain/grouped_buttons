@@ -135,7 +135,7 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
 
           content.add(Column(children: <Widget>[
             rb,
-            SizedBox(width: 12.0),
+            // SizedBox(width: 12.0),
             t,
           ]));
 
