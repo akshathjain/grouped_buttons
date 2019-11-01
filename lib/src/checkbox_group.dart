@@ -136,9 +136,9 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
         if(widget.orientation == GroupedButtonsOrientation.VERTICAL){
 
           content.add(Row(children: <Widget>[
-            SizedBox(width: 4.0),
+            // SizedBox(width: 4.0),
             cb,
-            SizedBox(width: 4.0),
+            // SizedBox(width: 4.0),
             t,
           ]));
 
