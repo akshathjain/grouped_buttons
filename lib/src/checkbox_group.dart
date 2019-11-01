@@ -160,8 +160,8 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
     }
 
     return Container(
-      // padding: widget.padding,
-      // margin: widget.margin,
+      padding: widget.padding,
+      margin: widget.margin,
       child: widget.orientation == GroupedButtonsOrientation.VERTICAL ? Column(children: content) : Row(children: content),
     );
   }

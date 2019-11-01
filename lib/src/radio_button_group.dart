@@ -149,8 +149,8 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
     }
 
     return Container(
-      // padding: widget.padding,
-      // margin: widget.margin,
+      padding: widget.padding,
+      margin: widget.margin,
       child: widget.orientation == GroupedButtonsOrientation.VERTICAL ? Column(children: content) : Row(children: content),
     );
   }
