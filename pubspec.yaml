@@ -1,6 +1,6 @@
 name: grouped_buttons
 description: A simple package that makes grouping Checkboxes and Radio Buttons much easier.
-version: 1.0.5
+version: 1.0.6
 author: Akshath Jain <akshath@akshathjain.com>
 homepage: https://github.com/akshathjain/grouped_buttons
 
