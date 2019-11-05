@@ -112,6 +112,8 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
       GestureDetector t = GestureDetector(
           onTap: () => setState(() {
             _selected = widget.labels.elementAt(i);
+            if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
+            if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
           }),
           child: Text(
             widget.labels.elementAt(i),
