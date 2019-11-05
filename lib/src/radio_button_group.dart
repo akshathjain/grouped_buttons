@@ -37,7 +37,7 @@ class RadioButtonGroup extends StatefulWidget {
   final GroupedButtonsOrientation orientation;
 
   /// Called when needed to build a RadioButtonGroup element.
-  final Widget Function(Radio radioButton, Text label, int index) itemBuilder;
+  final Widget Function(Radio radioButton, GestureDetector label, int index) itemBuilder;
 
   //RADIO BUTTON FIELDS
   /// The color to use when a Radio button is checked.
@@ -109,12 +109,16 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
                     }),
                 );
 
-      Text t = Text(
-        widget.labels.elementAt(i),
-        style: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ?
-                  widget.labelStyle.apply(color: Theme.of(context).disabledColor) :
-                  widget.labelStyle
-      );
+      GestureDetector t = GestureDetector(
+          onTap: () => setState(() {
+            _selected = widget.labels.elementAt(i);
+          }),
+          child: Text(
+            widget.labels.elementAt(i),
+            style: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ?
+                      widget.labelStyle.apply(color: Theme.of(context).disabledColor) :
+                      widget.labelStyle
+          ));
 
       //use user defined method to build
       if(widget.itemBuilder != null)
