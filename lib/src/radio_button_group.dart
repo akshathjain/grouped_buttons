@@ -134,7 +134,7 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
             SizedBox(width: 12.0),
             rb,
             SizedBox(width: 12.0),
-            t,
+			Expanded(child: t),
           ]));
 
         }else{ //horizontal orientation means Row with Column inside
@@ -142,7 +142,7 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
           content.add(Column(children: <Widget>[
             rb,
             SizedBox(width: 12.0),
-            t,
+			Expanded(child:t),
           ]));
 
         }
