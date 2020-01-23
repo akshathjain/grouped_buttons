@@ -76,50 +76,48 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
   void initState(){
     super.initState();
 
-    //set the selected to the picked (if not null)
+    // set the selected to the picked (if not null)
     _selected = widget.picked ?? "";
 
   }
 
-
   @override
   Widget build(BuildContext context) {
 
-     //set the selected to the picked (if not null)
+    // set the selected to the picked (if not null)
     _selected = widget.picked ?? _selected;
-
 
     List<Widget> content = [];
     for(int i = 0; i < widget.labels.length; i++){
 
       Radio rb = Radio(
-                  activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
-                  groupValue: widget.labels.indexOf(_selected),
-                  value: i,
+        activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
+        groupValue: widget.labels.indexOf(_selected),
+        value: i,
 
-                  //just changed the selected filter to current selection
-                  //since these are radio buttons, and you can only pick
-                  //one at a time
-                  onChanged: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ? null :
-                    (var index) => setState((){
-                      _selected = widget.labels.elementAt(i);
+        //just changed the selected filter to current selection
+        //since these are radio buttons, and you can only pick
+        //one at a time
+        onChanged: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ? null :
+            (var index) => setState((){
+          _selected = widget.labels.elementAt(i);
 
-                      if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
-                      if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
-                    }),
-                );
+          if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
+          if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
+        }),
+      );
 
       Text t = Text(
-        widget.labels.elementAt(i),
-        style: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ?
-                  widget.labelStyle.apply(color: Theme.of(context).disabledColor) :
-                  widget.labelStyle
+          widget.labels.elementAt(i),
+          style: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ?
+          widget.labelStyle.apply(color: Theme.of(context).disabledColor) :
+          widget.labelStyle
       );
 
       //use user defined method to build
-      if(widget.itemBuilder != null)
+      if (widget.itemBuilder != null)
         content.add(widget.itemBuilder(rb, t, i));
-      else{ //otherwise, use predefined method of building
+      else { //otherwise, use predefined method of building
 
         //vertical orientation means Column with Row inside
         if(widget.orientation == GroupedButtonsOrientation.VERTICAL){
@@ -130,18 +128,14 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
             SizedBox(width: 12.0),
             t,
           ]));
-
-        }else{ //horizontal orientation means Row with Column inside
-
+        } else { //horizontal orientation means Row with Column inside
           content.add(Column(children: <Widget>[
             rb,
             SizedBox(width: 12.0),
             t,
           ]));
-
         }
       }
-
     }
 
     return Container(
