@@ -1,0 +1,4 @@
+enum GroupedButtonDirection {
+  HORIZONTAL,
+  VERTICAL,
+}
