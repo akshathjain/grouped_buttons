@@ -99,11 +99,59 @@ class _HomePageState extends State<HomePage> {
             "Option 1",
             "Option 2",
           ],
-          disabled: [
-            "Option 1"
-          ],
-          onChange: (String label, int index) => print("label: $label index: $index"),
+          orientation: GroupedButtonsOrientation.HORIZONTAL,
+          direction: GroupedButtonDirection.HORIZONTAL,
+          onChange: (String label, int index) =>
+              print("label: $label index: $index"),
           onSelected: (String label) => print(label),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        RadioButtonGroup(
+          labels: [
+            "Option 1",
+            "Option 2",
+          ],
+          orientation: GroupedButtonsOrientation.VERTICAL,
+          direction: GroupedButtonDirection.HORIZONTAL,
+          onChange: (String label, int index) =>
+              print("label: $label index: $index"),
+          onSelected: (String label) => print(label),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        RadioButtonGroup(
+          labels: [
+            "Option 1",
+            "Option 2",
+          ],
+          disabled: [
+            "Option 1",
+          ],
+          orientation: GroupedButtonsOrientation.HORIZONTAL,
+          direction: GroupedButtonDirection.VERTICAL,
+          onChange: (String label, int index) =>
+              print("label: $label index: $index"),
+          onSelected: (String label) => print(label),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          child: RadioButtonGroup(
+            labels: [
+              "Option 1",
+              "Option 2",
+            ],
+            orientation: GroupedButtonsOrientation.VERTICAL,
+            direction: GroupedButtonDirection.VERTICAL,
+            onChange: (String label, int index) =>
+                print("label: $label index: $index"),
+            onSelected: (String label) => print(label),
+          ),
         ),
 
 

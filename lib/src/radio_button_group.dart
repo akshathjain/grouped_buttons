@@ -8,6 +8,7 @@ Licensing: More information can be found here: https://github.com/akshathjain/gr
 
 import 'package:flutter/material.dart';
 import 'grouped_buttons_orientation.dart';
+import 'grouped_buttons_direction.dart';
 
 class RadioButtonGroup extends StatefulWidget {
   /// A list of strings that describes each Radio button. Each label must be distinct.
@@ -36,6 +37,9 @@ class RadioButtonGroup extends StatefulWidget {
   /// Specifies the orientation to display elements.
   final GroupedButtonsOrientation orientation;
 
+  /// Specifies the relative position of radio button and text
+  final GroupedButtonDirection direction;
+
   /// Called when needed to build a RadioButtonGroup element.
   final Widget Function(Radio radioButton, Text label, int index) itemBuilder;
 
@@ -60,6 +64,7 @@ class RadioButtonGroup extends StatefulWidget {
     this.labelStyle = const TextStyle(),
     this.activeColor, //defaults to toggleableActiveColor,
     this.orientation = GroupedButtonsOrientation.VERTICAL,
+    this.direction = GroupedButtonDirection.HORIZONTAL,
     this.itemBuilder,
     this.padding = const EdgeInsets.all(0.0),
     this.margin = const EdgeInsets.all(0.0),
@@ -121,24 +126,54 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
         content.add(widget.itemBuilder(rb, t, i));
       else{ //otherwise, use predefined method of building
 
-        //vertical orientation means Column with Row inside
-        if(widget.orientation == GroupedButtonsOrientation.VERTICAL){
-
-          content.add(Row(children: <Widget>[
-            SizedBox(width: 12.0),
-            rb,
-            SizedBox(width: 12.0),
-            t,
-          ]));
-
-        }else{ //horizontal orientation means Row with Column inside
-
-          content.add(Column(children: <Widget>[
-            rb,
-            SizedBox(width: 12.0),
-            t,
-          ]));
-
+        if (widget.orientation == GroupedButtonsOrientation.VERTICAL) {
+          if (widget.direction == GroupedButtonDirection.HORIZONTAL) {
+            content.add(
+              Row(
+                children: <Widget>[
+                  SizedBox(width: 12.0),
+                  rb,
+                  SizedBox(width: 12.0),
+                  t,
+                ],
+              ),
+            );
+          } else {
+            content.add(
+              Column(
+                children: <Widget>[
+                  SizedBox(width: 12.0),
+                  rb,
+                  SizedBox(width: 12.0),
+                  t,
+                ],
+              ),
+            );
+          }
+        } else {
+          if (widget.direction == GroupedButtonDirection.HORIZONTAL) {
+            content.add(
+              Row(
+                children: <Widget>[
+                  SizedBox(width: 12.0),
+                  rb,
+                  SizedBox(width: 12.0),
+                  t,
+                ],
+              ),
+            );
+          } else {
+            content.add(
+              Column(
+                children: <Widget>[
+                  SizedBox(width: 12.0),
+                  rb,
+                  SizedBox(width: 12.0),
+                  t,
+                ],
+              ),
+            );
+          }
         }
       }
 

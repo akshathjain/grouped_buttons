@@ -7,6 +7,7 @@ Licensing: More information can be found here: https://github.com/akshathjain/gr
 */
 
 import 'package:flutter/material.dart';
+import 'grouped_buttons_direction.dart';
 import 'grouped_buttons_orientation.dart';
 
 class CheckboxGroup extends StatefulWidget {
@@ -35,6 +36,9 @@ class CheckboxGroup extends StatefulWidget {
 
   /// Specifies the orientation to display elements.
   final GroupedButtonsOrientation orientation;
+
+  /// Specifies the relative position of radio button and text
+  final GroupedButtonDirection direction;
 
   /// Called when needed to build a CheckboxGroup element.
   final Widget Function(Checkbox checkBox, Text label, int index) itemBuilder;
@@ -71,6 +75,7 @@ class CheckboxGroup extends StatefulWidget {
     this.checkColor = const Color(0xFFFFFFFF),
     this.tristate = false,
     this.orientation = GroupedButtonsOrientation.VERTICAL,
+    this.direction = GroupedButtonDirection.HORIZONTAL,
     this.itemBuilder,
     this.padding = const EdgeInsets.all(0.0),
     this.margin = const EdgeInsets.all(0.0),
@@ -134,21 +139,37 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
 
         //vertical orientation means Column with Row inside
         if(widget.orientation == GroupedButtonsOrientation.VERTICAL){
-
-          content.add(Row(children: <Widget>[
-            SizedBox(width: 12.0),
-            cb,
-            SizedBox(width: 12.0),
-            t,
-          ]));
-
+          if (widget.direction == GroupedButtonDirection.HORIZONTAL) {
+            content.add(Row(children: <Widget>[
+              SizedBox(width: 12.0),
+              cb,
+              SizedBox(width: 12.0),
+              t,
+            ]));
+          }
+          else{
+            content.add(Column(children: <Widget>[
+              SizedBox(width: 12.0),
+              cb,
+              SizedBox(width: 12.0),
+              t,
+            ]));
+          }
         }else{ //horizontal orientation means Row with Column inside
-
-          content.add(Column(children: <Widget>[
-            cb,
-            SizedBox(width: 12.0),
-            t,
-          ]));
+          if (widget.direction == GroupedButtonDirection.VERTICAL) {
+            content.add(Column(children: <Widget>[
+              cb,
+              SizedBox(width: 12.0),
+              t,
+            ]));
+          }
+          else {
+            content.add(Row(children: <Widget>[
+              cb,
+              SizedBox(width: 12.0),
+              t,
+            ]));
+          }
 
         }
 
