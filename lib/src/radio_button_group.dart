@@ -96,23 +96,27 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
 
     List<Widget> content = [];
     for(int i = 0; i < widget.labels.length; i++){
-      Widget rb = Transform.scale(
-        scale: _size,
-        child: Radio(
-          activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
-          groupValue: widget.labels.indexOf(_selected),
-          value: i,
+      Widget rb = SizedBox(
+        height: 48.0 * _size,
+        width: 48.0 * _size,
+        child: Transform.scale(
+          scale: _size,
+          child: Radio(
+            activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
+            groupValue: widget.labels.indexOf(_selected),
+            value: i,
 
-          //just changed the selected filter to current selection
-          //since these are radio buttons, and you can only pick
-          //one at a time
-          onChanged: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ? null :
-              (var index) => setState((){
-            _selected = widget.labels.elementAt(i);
+            //just changed the selected filter to current selection
+            //since these are radio buttons, and you can only pick
+            //one at a time
+            onChanged: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ? null :
+                (var index) => setState((){
+              _selected = widget.labels.elementAt(i);
 
-            if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
-            if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
-          }),
+              if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
+              if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
+            }),
+          ),
         ),
       );
 
@@ -137,33 +141,21 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
         //vertical orientation means Column with Row inside
         if(widget.orientation == GroupedButtonsOrientation.VERTICAL){
 
-          content.add(Column(
-            children: [
-              SizedBox(height: 12.0 * _size),
-              Row(children: <Widget>[
-                SizedBox(width: 12.0 * _size),
-                rb,
-                SizedBox(width: 12.0 * _size),
-                Expanded(child: t),
-              ]),
-              SizedBox(height: 12.0 * _size),
-            ],
-          ));
+          content.add(Row(children: <Widget>[
+            SizedBox(width: 12.0 * _size),
+            rb,
+            SizedBox(width: 12.0 * _size),
+            Expanded(child: t),
+          ]));
 
         }else{ //horizontal orientation means Row with Column inside
 
-          content.add(Row(
-            children: [
-              SizedBox(width: 12.0 * _size),
-              Column(children: <Widget>[
-                SizedBox(height: 12.0 * _size),
-                rb,
-                SizedBox(height: 12.0 * _size),
+          content.add(Column(children: <Widget>[
+            SizedBox(height: 12.0 * _size),
+            rb,
+            SizedBox(height: 12.0 * _size),
 			          Expanded(child:t),
-              ]),
-              SizedBox(width: 12.0 * _size),
-            ],
-          ));
+          ]));
 
         }
       }
