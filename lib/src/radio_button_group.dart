@@ -7,6 +7,7 @@ Licensing: More information can be found here: https://github.com/akshathjain/gr
 */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'grouped_buttons_orientation.dart';
 
 class RadioButtonGroup extends StatefulWidget {
@@ -84,30 +85,32 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
 
   @override
   Widget build(BuildContext context) {
-
+    ScreenUtil.init(width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, allowFontScaling: false);
      //set the selected to the picked (if not null)
     _selected = widget.picked ?? _selected;
 
 
     List<Widget> content = [];
     for(int i = 0; i < widget.labels.length; i++){
+      Widget rb = Transform.scale(
+        scale: ScreenUtil().setWidth(1),
+        child: Radio(
+          activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
+          groupValue: widget.labels.indexOf(_selected),
+          value: i,
 
-      Radio rb = Radio(
-                  activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
-                  groupValue: widget.labels.indexOf(_selected),
-                  value: i,
+          //just changed the selected filter to current selection
+          //since these are radio buttons, and you can only pick
+          //one at a time
+          onChanged: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ? null :
+              (var index) => setState((){
+            _selected = widget.labels.elementAt(i);
 
-                  //just changed the selected filter to current selection
-                  //since these are radio buttons, and you can only pick
-                  //one at a time
-                  onChanged: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ? null :
-                    (var index) => setState((){
-                      _selected = widget.labels.elementAt(i);
-
-                      if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
-                      if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
-                    }),
-                );
+            if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
+            if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
+          }),
+        ),
+      );
 
       GestureDetector t = GestureDetector(
           onTap: () => setState(() {

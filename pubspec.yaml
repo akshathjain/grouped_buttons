@@ -1,6 +1,6 @@
 name: grouped_buttons
 description: A simple package that makes grouping Checkboxes and Radio Buttons much easier.
-version: 1.0.7
+version: 1.0.8
 author: Akshath Jain <akshath@akshathjain.com>
 homepage: https://github.com/akshathjain/grouped_buttons
 
@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_screenutil: 2.1.0
 
 dev_dependencies:
   flutter_test:
