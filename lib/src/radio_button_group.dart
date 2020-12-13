@@ -51,6 +51,9 @@ class RadioButtonGroup extends StatefulWidget {
   /// Empty space surrounding the RadioButtonGroup.
   final EdgeInsetsGeometry margin;
 
+  /// Size of radio for the RadioButtonGroup.
+  final double size;
+
   RadioButtonGroup({
     Key key,
     @required this.labels,
@@ -64,6 +67,7 @@ class RadioButtonGroup extends StatefulWidget {
     this.itemBuilder,
     this.padding = const EdgeInsets.all(0.0),
     this.margin = const EdgeInsets.all(0.0),
+    this.size,
   }) : super (key: key);
 
   @override
@@ -72,6 +76,7 @@ class RadioButtonGroup extends StatefulWidget {
 
 class _RadioButtonGroupState extends State<RadioButtonGroup> {
   String _selected;
+  double _size;
 
   @override
   void initState(){
@@ -79,21 +84,20 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
 
     //set the selected to the picked (if not null)
     _selected = widget.picked ?? "";
-
+    _size = widget.size ?? 1;
   }
 
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, allowFontScaling: false);
      //set the selected to the picked (if not null)
     _selected = widget.picked ?? _selected;
-
+    _size = widget.size ?? 1;
 
     List<Widget> content = [];
     for(int i = 0; i < widget.labels.length; i++){
       Widget rb = Transform.scale(
-        scale: ScreenUtil().setWidth(1),
+        scale: _size,
         child: Radio(
           activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
           groupValue: widget.labels.indexOf(_selected),
