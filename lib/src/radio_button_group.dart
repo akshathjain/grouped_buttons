@@ -7,6 +7,7 @@ Licensing: More information can be found here: https://github.com/akshathjain/gr
 */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'grouped_buttons_orientation.dart';
 
 class RadioButtonGroup extends StatefulWidget {
@@ -37,7 +38,7 @@ class RadioButtonGroup extends StatefulWidget {
   final GroupedButtonsOrientation orientation;
 
   /// Called when needed to build a RadioButtonGroup element.
-  final Widget Function(Radio radioButton, Text label, int index) itemBuilder;
+  final Widget Function(Radio radioButton, GestureDetector label, int index) itemBuilder;
 
   //RADIO BUTTON FIELDS
   /// The color to use when a Radio button is checked.
@@ -49,6 +50,9 @@ class RadioButtonGroup extends StatefulWidget {
 
   /// Empty space surrounding the RadioButtonGroup.
   final EdgeInsetsGeometry margin;
+
+  /// Size of radio for the RadioButtonGroup.
+  final double size;
 
   RadioButtonGroup({
     Key key,
@@ -63,6 +67,7 @@ class RadioButtonGroup extends StatefulWidget {
     this.itemBuilder,
     this.padding = const EdgeInsets.all(0.0),
     this.margin = const EdgeInsets.all(0.0),
+    this.size,
   }) : super (key: key);
 
   @override
@@ -71,6 +76,7 @@ class RadioButtonGroup extends StatefulWidget {
 
 class _RadioButtonGroupState extends State<RadioButtonGroup> {
   String _selected;
+  double _size;
 
   @override
   void initState(){
@@ -78,43 +84,54 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
 
     //set the selected to the picked (if not null)
     _selected = widget.picked ?? "";
-
+    _size = widget.size ?? 1;
   }
 
 
   @override
   Widget build(BuildContext context) {
-
      //set the selected to the picked (if not null)
     _selected = widget.picked ?? _selected;
-
+    _size = widget.size ?? 1;
 
     List<Widget> content = [];
     for(int i = 0; i < widget.labels.length; i++){
+      Widget rb = SizedBox(
+        height: 48.0 * _size,
+        width: 48.0 * _size,
+        child: Transform.scale(
+          scale: _size,
+          child: Radio(
+            activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
+            groupValue: widget.labels.indexOf(_selected),
+            value: i,
 
-      Radio rb = Radio(
-                  activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
-                  groupValue: widget.labels.indexOf(_selected),
-                  value: i,
+            //just changed the selected filter to current selection
+            //since these are radio buttons, and you can only pick
+            //one at a time
+            onChanged: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ? null :
+                (var index) => setState((){
+              _selected = widget.labels.elementAt(i);
 
-                  //just changed the selected filter to current selection
-                  //since these are radio buttons, and you can only pick
-                  //one at a time
-                  onChanged: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ? null :
-                    (var index) => setState((){
-                      _selected = widget.labels.elementAt(i);
-
-                      if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
-                      if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
-                    }),
-                );
-
-      Text t = Text(
-        widget.labels.elementAt(i),
-        style: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ?
-                  widget.labelStyle.apply(color: Theme.of(context).disabledColor) :
-                  widget.labelStyle
+              if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
+              if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
+            }),
+          ),
+        ),
       );
+
+      GestureDetector t = GestureDetector(
+          onTap: () => setState(() {
+            _selected = widget.labels.elementAt(i);
+            if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
+            if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
+          }),
+          child: Text(
+            widget.labels.elementAt(i),
+            style: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ?
+                      widget.labelStyle.apply(color: Theme.of(context).disabledColor) :
+                      widget.labelStyle
+          ));
 
       //use user defined method to build
       if(widget.itemBuilder != null)
@@ -125,18 +142,19 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
         if(widget.orientation == GroupedButtonsOrientation.VERTICAL){
 
           content.add(Row(children: <Widget>[
-            SizedBox(width: 12.0),
+            SizedBox(width: 12.0 * _size),
             rb,
-            SizedBox(width: 12.0),
-            t,
+            SizedBox(width: 12.0 * _size),
+            Expanded(child: t),
           ]));
 
         }else{ //horizontal orientation means Row with Column inside
 
           content.add(Column(children: <Widget>[
+            SizedBox(height: 12.0 * _size),
             rb,
-            SizedBox(width: 12.0),
-            t,
+            SizedBox(height: 12.0 * _size),
+			          Expanded(child:t),
           ]));
 
         }
@@ -145,8 +163,8 @@ class _RadioButtonGroupState extends State<RadioButtonGroup> {
     }
 
     return Container(
-      padding: widget.padding,
-      margin: widget.margin,
+      padding: widget.padding * _size,
+      margin: widget.margin * _size,
       child: widget.orientation == GroupedButtonsOrientation.VERTICAL ? Column(children: content) : Row(children: content),
     );
   }
