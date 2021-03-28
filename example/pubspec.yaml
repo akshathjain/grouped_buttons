@@ -1,6 +1,6 @@
 name: example
 description: An example app for the grouped_buttons package.
-
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
