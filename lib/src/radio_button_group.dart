@@ -38,7 +38,8 @@ class RadioButtonGroup extends StatefulWidget {
   final GroupedButtonsOrientation orientation;
 
   /// Called when needed to build a RadioButtonGroup element.
-  final Widget Function(Radio radioButton, GestureDetector label, int index) itemBuilder;
+  final Widget Function(Radio radioButton, GestureDetector label, int index)
+      itemBuilder;
 
   //RADIO BUTTON FIELDS
   /// The color to use when a Radio button is checked.
@@ -68,104 +69,123 @@ class RadioButtonGroup extends StatefulWidget {
     this.padding = const EdgeInsets.all(0.0),
     this.margin = const EdgeInsets.all(0.0),
     this.size,
-  }) : super (key: key);
+  }) : super(key: key);
 
   @override
   _RadioButtonGroupState createState() => _RadioButtonGroupState();
 }
 
 class _RadioButtonGroupState extends State<RadioButtonGroup> {
+  List<String> _labels = [];
+  List<String> _disabled = [];
   String _selected;
   double _size;
 
   @override
-  void initState(){
+  void initState() {
+    _init();
     super.initState();
-
-    //set the selected to the picked (if not null)
-    _selected = widget.picked ?? "";
-    _size = widget.size ?? 1;
   }
 
+  @override
+  void didUpdateWidget(RadioButtonGroup oldWidget) {
+    if (widget != oldWidget) {
+      _init();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
 
   @override
   Widget build(BuildContext context) {
-     //set the selected to the picked (if not null)
     _selected = widget.picked ?? _selected;
     _size = widget.size ?? 1;
 
     List<Widget> content = [];
-    for(int i = 0; i < widget.labels.length; i++){
+    for (int i = 0; i < _labels.length; i++) {
       Widget rb = SizedBox(
         height: 48.0 * _size,
         width: 48.0 * _size,
         child: Transform.scale(
           scale: _size,
           child: Radio(
-            activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
-            groupValue: widget.labels.indexOf(_selected),
+            activeColor:
+                widget.activeColor ?? Theme.of(context).toggleableActiveColor,
+            groupValue: _labels.indexOf(_selected),
             value: i,
 
             //just changed the selected filter to current selection
             //since these are radio buttons, and you can only pick
             //one at a time
-            onChanged: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ? null :
-                (var index) => setState((){
-              _selected = widget.labels.elementAt(i);
+            onChanged:
+                (_disabled != null && _disabled.contains(_labels.elementAt(i)))
+                    ? null
+                    : (var index) => setState(() {
+                          _selected = _labels.elementAt(i);
 
-              if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
-              if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
-            }),
+                          if (widget.onChange != null)
+                            widget.onChange(_labels.elementAt(i), i);
+                          if (widget.onSelected != null)
+                            widget.onSelected(_labels.elementAt(i));
+                        }),
           ),
         ),
       );
 
       GestureDetector t = GestureDetector(
           onTap: () => setState(() {
-            _selected = widget.labels.elementAt(i);
-            if(widget.onChange != null) widget.onChange(widget.labels.elementAt(i), i);
-            if(widget.onSelected != null) widget.onSelected(widget.labels.elementAt(i));
-          }),
-          child: Text(
-            widget.labels.elementAt(i),
-            style: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ?
-                      widget.labelStyle.apply(color: Theme.of(context).disabledColor) :
-                      widget.labelStyle
-          ));
+                _selected = _labels.elementAt(i);
+                if (widget.onChange != null)
+                  widget.onChange(_labels.elementAt(i), i);
+                if (widget.onSelected != null)
+                  widget.onSelected(_labels.elementAt(i));
+              }),
+          child: Text(_labels.elementAt(i),
+              style: (_disabled != null &&
+                      _disabled.contains(_labels.elementAt(i)))
+                  ? widget.labelStyle
+                      .apply(color: Theme.of(context).disabledColor)
+                  : widget.labelStyle));
 
       //use user defined method to build
-      if(widget.itemBuilder != null)
+      if (widget.itemBuilder != null)
         content.add(widget.itemBuilder(rb, t, i));
-      else{ //otherwise, use predefined method of building
+      else {
+        //otherwise, use predefined method of building
 
         //vertical orientation means Column with Row inside
-        if(widget.orientation == GroupedButtonsOrientation.VERTICAL){
-
+        if (widget.orientation == GroupedButtonsOrientation.VERTICAL) {
           content.add(Row(children: <Widget>[
             SizedBox(width: 12.0 * _size),
             rb,
             SizedBox(width: 12.0 * _size),
             Expanded(child: t),
           ]));
-
-        }else{ //horizontal orientation means Row with Column inside
+        } else {
+          //horizontal orientation means Row with Column inside
 
           content.add(Column(children: <Widget>[
             SizedBox(height: 12.0 * _size),
             rb,
             SizedBox(height: 12.0 * _size),
-			          Expanded(child:t),
+            Expanded(child: t),
           ]));
-
         }
       }
-
     }
 
     return Container(
       padding: widget.padding * _size,
       margin: widget.margin * _size,
-      child: widget.orientation == GroupedButtonsOrientation.VERTICAL ? Column(children: content) : Row(children: content),
+      child: widget.orientation == GroupedButtonsOrientation.VERTICAL
+          ? Column(children: content)
+          : Row(children: content),
     );
+  }
+
+  void _init() {
+    _labels = widget.labels;
+    _disabled = widget.disabled;
+    _selected = widget.picked ?? "";
+    _size = widget.size ?? 1;
   }
 }
