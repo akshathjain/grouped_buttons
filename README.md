@@ -13,32 +13,42 @@ Add the following to your `pubspec.yaml` file:
 ## Simple Usage
 #### Creating a basic `CheckboxGroup`
 
-    CheckboxGroup(
-      labels: <String>[
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
-      onSelected: (List<String> checked) => print(checked.toString())
-    );
+```dart
+CheckboxGroup(
+  labels: <String>[
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ],
+  onSelected: (List<String> checked) => print(checked.toString())
+);
+```
+<br>
 
 #### Creating a basic `RadioButtonGroup`
 
-    RadioButtonGroup(
-      labels: <String>[
-        "Option 1",
-        "Option 2",
-      ],
-      onSelected: (String selected) => print(selected)
-    );
+```dart
+RadioButtonGroup(
+  labels: <String>[
+    "Option 1",
+    "Option 2",
+  ],
+  onSelected: (String selected) => print(selected)
+);
+```
+<br>
 
 #### Screenshot
 <img width="250px" src="https://raw.githubusercontent.com/akshathjain/grouped_buttons/master/screenshots/basicusagescreenshot.png" alt="Basic Usage"/>
+
+<br>
+<br>
+<br>
 
 ## Custom Usage
 There are several options that allow for more control.
@@ -60,29 +70,33 @@ There are several options that allow for more control.
 |`padding`      |Empty space in which to inset the CheckboxGroup.   |
 |`tristate`     |If true the checkbox's value can be true, false, or null.   |
 
-    List<String> _checked = ["A", "B"];
+```dart
+List<String> _checked = ["A", "B"];
 
-    CheckboxGroup(
-      orientation: GroupedButtonsOrientation.HORIZONTAL,
-      margin: const EdgeInsets.only(left: 12.0),
-      onSelected: (List selected) => setState((){
-        _checked = selected;
-      }),
-      labels: <String>[
-        "A",
-        "B",
+CheckboxGroup(
+  orientation: GroupedButtonsOrientation.HORIZONTAL,
+  margin: const EdgeInsets.only(left: 12.0),
+  onSelected: (List selected) => setState((){
+    _checked = selected;
+  }),
+  labels: <String>[
+    "A",
+    "B",
+  ],
+  checked: _checked,
+  itemBuilder: (Checkbox cb, Text txt, int i){
+    return Column(
+      children: <Widget>[
+        Icon(Icons.polymer),
+        cb,
+        txt,
       ],
-      checked: _checked,
-      itemBuilder: (Checkbox cb, Text txt, int i){
-        return Column(
-          children: <Widget>[
-            Icon(Icons.polymer),
-            cb,
-            txt,
-          ],
-        );
-      },
     );
+  },
+);
+```
+<br>
+<br>
 
 #### Custom `RadioButtonGroup`
 |   Properties  |  Description |
@@ -99,29 +113,33 @@ There are several options that allow for more control.
 |`padding`      |Empty space in which to inset the RadioButtonGroup.   |
 |`picked`       |Specifies which Radio button to automatically pick. Every element must match a label. This is useful for clearing what is picked (set it to ""). If this is non-null, then the user must handle updating this; otherwise, the state of the RadioButtonGroup won't change. |
 
-    String _picked = "Two";
+```dart
+String _picked = "Two";
 
-    RadioButtonGroup(
-      orientation: GroupedButtonsOrientation.HORIZONTAL,
-      margin: const EdgeInsets.only(left: 12.0),
-      onSelected: (String selected) => setState((){
-        _picked = selected;
-      }),
-      labels: <String>[
-        "One",
-        "Two",
+RadioButtonGroup(
+  orientation: GroupedButtonsOrientation.HORIZONTAL,
+  margin: const EdgeInsets.only(left: 12.0),
+  onSelected: (String selected) => setState((){
+    _picked = selected;
+  }),
+  labels: <String>[
+    "One",
+    "Two",
+  ],
+  picked: _picked,
+  itemBuilder: (Radio rb, Text txt, int i){
+    return Column(
+      children: <Widget>[
+        Icon(Icons.public),
+        rb,
+        txt,
       ],
-      picked: _picked,
-      itemBuilder: (Radio rb, Text txt, int i){
-        return Column(
-          children: <Widget>[
-            Icon(Icons.public),
-            rb,
-            txt,
-          ],
-        );
-      },
     );
+  },
+);
+```
+
+<br>
 
 #### Screenshot
 <img width="250px" src="https://raw.githubusercontent.com/akshathjain/grouped_buttons/master/screenshots/customusagescreenshot.png" alt="Basic Usage"/>

@@ -170,17 +170,7 @@ class _HomePageState extends State<HomePage> {
             "Two",
           ],
           picked: _picked,
-          itemBuilder: (Radio rb, Text txt, int i){
-            return Column(
-              children: <Widget>[
-                Icon(Icons.public),
-                rb,
-                txt,
-              ],
-            );
-          },
         ),
-
       ]
     );
   }
