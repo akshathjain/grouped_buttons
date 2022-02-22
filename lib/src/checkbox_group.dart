@@ -11,57 +11,57 @@ import 'grouped_buttons_orientation.dart';
 
 class CheckboxGroup extends StatefulWidget {
   /// A list of strings that describes each Checkbox. Each label must be distinct.
-  final List<String> labels;
+  late final List<String> labels;
 
   /// Specifies which boxes to be automatically check.
   /// Every element must match a label.
   /// This is useful for clearing all selections (set it to []).
   /// If this is non-null, then the user must handle updating this list; otherwise, the state of the CheckboxGroup won't change.
-  final List<String> checked;
+  final List<String>? checked;
 
   /// Specifies which boxes should be disabled.
   /// If this is non-null, no boxes will be disabled.
   /// The strings passed to this must match the labels.
-  final List<String> disabled;
+  final List<String>? disabled;
 
   /// Called when the value of the CheckboxGroup changes.
-  final void Function(bool isChecked, String label, int index) onChange;
+  final void Function(bool isChecked, String label, int index)? onChange;
 
   /// Called when the user makes a selection.
-  final void Function(List<String> selected) onSelected;
+  final void Function(List<String> selected)? onSelected;
 
   /// The style to use for the labels.
-  final TextStyle labelStyle;
+  final TextStyle? labelStyle;
 
   /// Specifies the orientation to display elements.
-  final GroupedButtonsOrientation orientation;
+  late final GroupedButtonsOrientation orientation;
 
   /// Called when needed to build a CheckboxGroup element.
-  final Widget Function(Checkbox checkBox, Text label, int index) itemBuilder;
+  final Widget Function(Checkbox checkBox, Text label, int index)? itemBuilder;
 
   //THESE FIELDS ARE FOR THE CHECKBOX
 
   /// The color to use when a Checkbox is checked.
-  final Color activeColor;
+  final Color? activeColor;
 
   /// The color to use for the check icon when a Checkbox is checked.
-  final Color checkColor;
+  late final Color checkColor;
 
   /// If true the checkbox's value can be true, false, or null.
-  final bool tristate;
+  late final bool tristate;
 
 
   //SPACING STUFF
 
   /// Empty space in which to inset the CheckboxGroup.
-  final EdgeInsetsGeometry padding;
+  late final EdgeInsetsGeometry padding;
 
   /// Empty space surrounding the CheckboxGroup.
-  final EdgeInsetsGeometry margin;
+  late final EdgeInsetsGeometry margin;
 
   CheckboxGroup({
-    Key key,
-    @required this.labels,
+    Key? key,
+    required this.labels,
     this.checked,
     this.disabled,
     this.onChange,
@@ -101,7 +101,7 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
     //set the selected to the checked (if not null)
     if(widget.checked != null){
       _selected = [];
-     _selected.addAll(widget.checked); //use add all to prevent a shallow copy
+     _selected.addAll(widget.checked!); //use add all to prevent a shallow copy
     }
 
 
@@ -111,8 +111,8 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
 
       Checkbox cb = Checkbox(
                       value: _selected.contains(widget.labels.elementAt(i)),
-                      onChanged: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ? null :
-                                    (bool isChecked) => onChanged(isChecked, i),
+                      onChanged: (widget.disabled != null && widget.disabled!.contains(widget.labels.elementAt(i))) ? null :
+                                    (bool? isChecked) => onChanged(isChecked??false, i),
                       checkColor: widget.checkColor,
                       activeColor: widget.activeColor ?? Theme.of(context).toggleableActiveColor,
                       tristate: widget.tristate,
@@ -120,8 +120,8 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
 
       Text t = Text(
         widget.labels.elementAt(i),
-        style: (widget.disabled != null && widget.disabled.contains(widget.labels.elementAt(i))) ?
-                  widget.labelStyle.apply(color: Theme.of(context).disabledColor) :
+        style: (widget.disabled != null && widget.disabled!.contains(widget.labels.elementAt(i))) ?
+                  widget.labelStyle?.apply(color: Theme.of(context).disabledColor) :
                   widget.labelStyle
       );
 
@@ -129,7 +129,7 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
 
       //use user defined method to build
       if(widget.itemBuilder != null)
-        content.add(widget.itemBuilder(cb, t, i));
+        content.add(widget.itemBuilder!(cb, t, i));
       else{ //otherwise, use predefined method of building
 
         //vertical orientation means Column with Row inside
@@ -174,8 +174,8 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
           _selected.add(widget.labels.elementAt(i));
         }
 
-        if(widget.onChange != null) widget.onChange(isChecked, widget.labels.elementAt(i), i);
-        if(widget.onSelected != null) widget.onSelected(_selected);
+        if(widget.onChange != null) widget.onChange!(isChecked, widget.labels.elementAt(i), i);
+        if(widget.onSelected != null) widget.onSelected!(_selected);
       });
     }
   }
